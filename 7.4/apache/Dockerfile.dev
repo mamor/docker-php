@@ -1,13 +1,17 @@
 FROM madworks/php:7.4-apache
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
-    apt-get update && apt-get install -y --no-install-recommends gnupg fonts-ipafont && \
+    apt-get update && apt-get install -y --no-install-recommends fonts-ipafont gnupg unzip && \
     curl https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends google-chrome-stable && \
     sed -i 's|HERE/chrome\"|HERE/chrome\" --no-sandbox|g' /opt/google/chrome/google-chrome && \
-    apt-get purge -y gnupg && \
+    curl -O https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip && \
+    unzip chromedriver_linux64.zip && \
+    rm chromedriver_linux64.zip && \
+    mv chromedriver /usr/local/bin/ && \
+    apt-get purge -y gnupg unzip && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
