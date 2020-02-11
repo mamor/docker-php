@@ -21,4 +21,6 @@ RUN apt-get update && \
     echo 'CustomLog ${APACHE_LOG_DIR}/access.log combined' >> /etc/apache2/sites-available/000-default.conf && \
     echo '</VirtualHost>' >> /etc/apache2/sites-available/000-default.conf && \
     echo 'Listen 8080' > /etc/apache2/ports.conf && \
-    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
+    sed -i -e 's/expose_php = On/expose_php = Off/' /usr/local/etc/php/php.ini
+
