@@ -15,7 +15,6 @@ RUN apt-get update && \
     rm -rf /usr/src/php/ext/redis && \
     a2enmod rewrite && \
     echo '<VirtualHost *:8080>' > /etc/apache2/sites-available/000-default.conf && \
-    echo 'ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/000-default.conf && \
     echo 'DocumentRoot /var/www/html/public' >> /etc/apache2/sites-available/000-default.conf && \
     echo 'ErrorLog /dev/stderr' >> /etc/apache2/sites-available/000-default.conf && \
     echo 'CustomLog /dev/stdout combined' >> /etc/apache2/sites-available/000-default.conf && \
@@ -23,4 +22,3 @@ RUN apt-get update && \
     echo 'Listen 8080' > /etc/apache2/ports.conf && \
     cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
     sed -i -e 's/expose_php = On/expose_php = Off/' /usr/local/etc/php/php.ini
-
