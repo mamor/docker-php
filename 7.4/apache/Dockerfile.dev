@@ -1,6 +1,7 @@
 FROM madworks/php:7.4-apache
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
+    sed -i 's/;opcache.revalidate_freq=2/opcache.revalidate_freq=0/' /usr/local/etc/php/php.ini && \
     apt-get update && apt-get install -y --no-install-recommends fonts-ipafont gnupg unzip && \
     curl https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list && \
