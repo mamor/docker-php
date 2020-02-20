@@ -7,7 +7,7 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
     echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends google-chrome-stable && \
-    sed -i 's|HERE/chrome\"|HERE/chrome\" --no-sandbox|g' /opt/google/chrome/google-chrome && \
+    sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|' /opt/google/chrome/google-chrome && \
     curl -O https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     rm chromedriver_linux64.zip && \

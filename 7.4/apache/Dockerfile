@@ -21,5 +21,5 @@ RUN apt-get update && \
     echo '</VirtualHost>' >> /etc/apache2/sites-available/000-default.conf && \
     echo 'Listen 8080' > /etc/apache2/ports.conf && \
     cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
-    sed -i -e 's/expose_php = On/expose_php = Off/' /usr/local/etc/php/php.ini && \
+    sed -i 's/expose_php = On/expose_php = Off/' /usr/local/etc/php/php.ini && \
     sed -i 's/;opcache.validate_timestamps=1/opcache.validate_timestamps=0/' /usr/local/etc/php/php.ini
