@@ -8,7 +8,7 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
     apt-get update && \
     apt-get install -y --no-install-recommends google-chrome-stable && \
     sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|' /opt/google/chrome/google-chrome && \
-    curl -O https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip && \
+    curl -O https://chromedriver.storage.googleapis.com/`dpkg -s google-chrome-stable | grep Version | sed -r 's/^[^0-9.]+([0-9.]+).*$/\1/'`/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     rm chromedriver_linux64.zip && \
     mv chromedriver /usr/local/bin/ && \
