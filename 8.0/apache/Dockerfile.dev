@@ -1,0 +1,18 @@
+FROM madworks/php:8.0-apache
+
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
+    sed -i 's/;opcache.revalidate_freq=2/opcache.revalidate_freq=0/' /usr/local/etc/php/php.ini && \
+    apt-get update && apt-get install -y --no-install-recommends fonts-ipafont gnupg mariadb-client unzip && \
+    curl https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo 'deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends google-chrome-stable && \
+    sed -i 's|HERE/chrome"|HERE/chrome" --disable-dev-shm-usage --no-sandbox|' /opt/google/chrome/google-chrome && \
+    curl -O https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip && \
+    unzip chromedriver_linux64.zip && \
+    rm chromedriver_linux64.zip && \
+    mv chromedriver /usr/local/bin/ && \
+    apt-get purge -y gnupg unzip && \
+    apt-get autoremove -y --purge && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
