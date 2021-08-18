@@ -28,3 +28,11 @@ jobs:
           tags: |
             docker.pkg.github.com/${{ github.repository }}/8.0-apache:latest
             docker.pkg.github.com/${{ github.repository }}/8.0-apache:${{ github.sha }}
+      - name: "Build container image: apache-dev"
+        uses: docker/build-push-action@v2
+        with:
+          file: 8.0/apache/Dockerfile.dev
+          push: true
+          tags: |
+            docker.pkg.github.com/${{ github.repository }}/8.0-apache-dev:latest
+            docker.pkg.github.com/${{ github.repository }}/8.0-apache-dev:${{ github.sha }}

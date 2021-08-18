@@ -1,4 +1,4 @@
-FROM madworks/php:8.0-apache
+FROM docker.pkg.github.com/mamor/docker-php/8.0-apache
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
     sed -i 's/;opcache.revalidate_freq=2/opcache.revalidate_freq=0/' /usr/local/etc/php/php.ini && \
