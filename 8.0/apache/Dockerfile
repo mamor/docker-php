@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends git libmemcached-dev libzip-dev supervisor && \
     git clone https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached && \
     git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
-    docker-php-ext-install bcmath memcached opcache pcntl pdo_mysql redis zip && \
+    docker-php-ext-install bcmath memcached opcache pcntl pdo_mysql redis sockets zip && \
     apt-get purge -y git && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
