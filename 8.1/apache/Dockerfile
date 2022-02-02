@@ -3,7 +3,7 @@ FROM php:8.1-apache
 EXPOSE 8080
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends cron git libjpeg-dev libmemcached-dev libpng-dev libzip-dev supervisor && \
+    apt-get install -y --no-install-recommends cron git libjpeg-dev libmemcached-dev libpng-dev libzip-dev supervisor unzip && \
     git clone https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached && \
     git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
     docker-php-ext-configure gd --with-jpeg && \
