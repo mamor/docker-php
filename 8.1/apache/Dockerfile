@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.1-rc-apache
 
 EXPOSE 8080
 
