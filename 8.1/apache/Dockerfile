@@ -24,6 +24,8 @@ RUN apt-get update && \
     cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
     sed -i 's/expose_php = On/expose_php = Off/' /usr/local/etc/php/php.ini && \
     sed -i 's/;opcache.validate_timestamps=1/opcache.validate_timestamps=0/' /usr/local/etc/php/php.ini && \
+    echo 'opcache.enable_cli=1' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini && \
+    echo 'opcache.jit_buffer_size=128M' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
