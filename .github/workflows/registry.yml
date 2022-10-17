@@ -1,6 +1,7 @@
 # https://docs.github.com/ja/actions/guides/publishing-docker-images
 name: Publish Docker image
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
