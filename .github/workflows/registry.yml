@@ -21,19 +21,19 @@ jobs:
           registry: docker.pkg.github.com
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Build container image: apache"
+      - name: "Build container image: swoole"
         uses: docker/build-push-action@v2
         with:
-          file: 8.2/apache/Dockerfile
+          file: 8.2/swoole/Dockerfile
           push: true
           tags: |
-            docker.pkg.github.com/${{ github.repository }}/8.2-apache:latest
-            docker.pkg.github.com/${{ github.repository }}/8.2-apache:${{ github.sha }}
-      - name: "Build container image: apache-dev"
+            docker.pkg.github.com/${{ github.repository }}/8.2-swoole:latest
+            docker.pkg.github.com/${{ github.repository }}/8.2-swoole:${{ github.sha }}
+      - name: "Build container image: swoole-dev"
         uses: docker/build-push-action@v2
         with:
-          file: 8.2/apache/Dockerfile.dev
+          file: 8.2/swoole/Dockerfile.dev
           push: true
           tags: |
-            docker.pkg.github.com/${{ github.repository }}/8.2-apache-dev:latest
-            docker.pkg.github.com/${{ github.repository }}/8.2-apache-dev:${{ github.sha }}
+            docker.pkg.github.com/${{ github.repository }}/8.2-swoole-dev:latest
+            docker.pkg.github.com/${{ github.repository }}/8.2-swoole-dev:${{ github.sha }}

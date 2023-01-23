@@ -1,0 +1,10 @@
+FROM docker.pkg.github.com/mamor/docker-php/8.2-swoole
+
+RUN apk add --no-cache make npm && \
+    npm install -g chokidar && \
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    php -r "unlink('composer-setup.php');" && \
+    mv composer.phar /usr/bin/composer
+
+ENV NODE_PATH /usr/local/lib/node_modules
