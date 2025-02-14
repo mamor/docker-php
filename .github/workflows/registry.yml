@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+env:
+  PHP_VERSION: 8.4
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -21,15 +23,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v3
         with:
-          file: 8.2/swoole/Dockerfile
+          file: ${{ env.PHP_VERSION }}/swoole/Dockerfile
           push: true
           tags: |
-            docker.pkg.github.com/${{ github.repository }}/8.2-swoole:latest
-            docker.pkg.github.com/${{ github.repository }}/8.2-swoole:${{ github.sha }}
-      - uses: docker/build-push-action@v3
-        with:
-          file: 8.2/swoole/Dockerfile.dev
-          push: true
-          tags: |
-            docker.pkg.github.com/${{ github.repository }}/8.2-swoole-dev:latest
-            docker.pkg.github.com/${{ github.repository }}/8.2-swoole-dev:${{ github.sha }}
+            docker.pkg.github.com/${{ github.repository }}/${{ env.PHP_VERSION }}-swoole:latest
+            docker.pkg.github.com/${{ github.repository }}/${{ env.PHP_VERSION }}-swoole:${{ github.sha }}
